@@ -25,6 +25,7 @@
                     <th>Nomor</th>
                     <th>Kepada</th>
                     <th>Dari</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -35,6 +36,7 @@
                     <td>{{$item->number}}</td>
                     <td>{{$item->to}}</td>
                     <td>{{$item->from}}</td>
+                    <td><button type="button" class="btn btn-success">Approve</button></td>
                     <td>
                     <div class="dropdown">
                             <a class="btn btn-outline-info btn-icon rounded-circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

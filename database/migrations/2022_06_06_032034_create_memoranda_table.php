@@ -16,13 +16,17 @@ class CreateMemorandaTable extends Migration
         Schema::create('memoranda', function (Blueprint $table) {
             $table->id();
             $table->string('number');
+            $table->unsignedBigInteger('id_user');
             $table->string('to');
             $table->string('from');
             $table->string('time');
             $table->string('title');
             $table->string('subject');
             $table->text('description');
+            $table->enum('approve', ['yes', 'no'])->default('no');
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 

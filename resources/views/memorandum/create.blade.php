@@ -20,62 +20,56 @@
              @csrf
             <div class="row form-group col-md-4">
                 <label class="form-control-label">Nomor : <span class="tx-danger">*</span></label>
-                <input class="form-control" type="text" name="number" placeholder="Nomor" autofocus required>
+                <input class="form-control" type="text" name="number" value="{{old('number')}}" placeholder="Nomor" autofocus required>
                 @error('number')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror 
             </div>
             <div class="row form-group col-md-4">
                 <label class="form-control-label">Kepada : <span class="tx-danger">*</span></label>
-                <input class="form-control" type="text" name="to" placeholder="Kepada" autofocus required>
+                <input class="form-control" type="text" name="to" value="{{old('to')}}" placeholder="Kepada" autofocus required>
                 @error('to')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror 
             </div>
             <div class="row form-group col-md-4">
                 <label class="form-control-label">Dari : <span class="tx-danger">*</span></label>
-                <input class="form-control" type="text" name="from" placeholder="Dari" autofocus required>
+                <input class="form-control" type="text" name="from" value="{{old('from')}}" placeholder="Dari" autofocus required>
                 @error('from')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror 
             </div>
             <div class="row form-group col-md-4">
 					<div class="form-group">
-						<label class="form-control-label">Tahun Masuk SD/ Sederajat: </label>
+						<label class="form-control-label">Waktu: </label>
 						<div class="input-group">
 							<div class="input-group-prepend">
 								<div class="input-group-text">
 									<i class="icon ion-calendar tx-16 lh-0 op-6"></i>
 								</div>
 							</div>
-			  				<input  name="es_year_entry" type="text" class="form-control fc-datepicker" placeholder="MM/DD/YYYY">
+			  				<input  name="time" type="text" class="form-control fc-datepicker" value="{{old('time')}}" placeholder="MM/DD/YYYY">
 						</div>
 					</div>
 			  	</div>
-            <div class="row form-group col-md-4">
-                <label class="form-control-label">Waktu : <span class="tx-danger">*</span></label>
-                <input class="form-control" type="text" name="time" placeholder="Waktu" autofocus required>
-                @error('time')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror 
-            </div>
+           
             <div class="row form-group col-md-4">
                 <label class="form-control-label">Judul : <span class="tx-danger">*</span></label>
-                <input class="form-control" type="text" name="title" placeholder="Judul" autofocus required>
+                <input class="form-control" type="text" name="title" placeholder="Judul" value="{{old('title')}}" autofocus required>
                 @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror 
             </div>
             <div class="row form-group col-md-4">
                 <label class="form-control-label">Subjek : <span class="tx-danger">*</span></label>
-                <input class="form-control" type="text" name="subject" placeholder="Subjek" autofocus required>
+                <input class="form-control" type="text" name="subject" placeholder="Subjek" value="{{old('subject')}}" autofocus required>
                 @error('subject')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror 
             </div>
             <div class="row form-group col-md-4">
                 <label class="form-control-label">Deskripsi : <span class="tx-danger">*</span></label>
-                <input class="form-control" type="text" name="description" placeholder="Deskripsi" autofocus required>
+                <input class="form-control" type="text" name="description" placeholder="Deskripsi" value="{{old('description')}}" autofocus required>
                 @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror 
