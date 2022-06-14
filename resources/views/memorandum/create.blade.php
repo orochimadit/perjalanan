@@ -74,6 +74,13 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror 
             </div>
+            <div class="row form-group col-md-4">
+                <label class="form-control-label">File : <span class="tx-danger">*</span></label>
+                <input class="form-control" type="file" name="file" placeholder="File" value="{{old('file')}}">
+                @error('file')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror 
+            </div>
          </div>
          <div class="form-layout-footer">
              <button type="submit" class="btn btn-primary bd-0" onclick="return confirm('Simpan data ?')">Simpan</button>

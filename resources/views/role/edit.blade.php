@@ -6,23 +6,23 @@
   <div class="slim-pageheader">
       <ol class="breadcrumb slim-breadcrumb">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{route('memorandum.index')}}">Memorandum</a></li>
+            <li class="breadcrumb-item"><a href="{{route('roles.index')}}">Role</a></li>
             <li class="breadcrumb-item active" aria-current="page">Ubah</li>
       </ol>
-      <h6 class="slim-pagetitle">UBAH MEMORANDUM</h6>
+      <h6 class="slim-pagetitle">UBAH ROLE</h6>
   </div>
  </div>
  <div class="col-md-12">
   <div class="section-wrapper">
      
-     <form action="{{route('memorandum.update', $memorandum->id)}}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
+     <form action="{{route('roles.update', $role->id)}}" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
          <div class="form-layout">
              @csrf
              @method('PUT')
              <div class="row form-group col-md-4">
-                 <label class="form-control-label">Nomor : <span class="tx-danger">*</span></label>
-                 <input class="form-control" type="text" name="nomor" placeholder="Nomor" value="{{$memorandum->nomor}}" autofocus required>
-                    @error('nomor')
+                 <label class="form-control-label">Name : <span class="tx-danger">*</span></label>
+                 <input class="form-control" type="text" name="name" placeholder="Name" value="{{$role->name}}" autofocus required>
+                    @error('name')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
             </div>

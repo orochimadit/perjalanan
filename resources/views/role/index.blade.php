@@ -6,13 +6,13 @@
         <div class="slim-pageheader">
             <ol class="breadcrumb slim-breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Data Memorandum</li>
+                <li class="breadcrumb-item active" aria-current="page">Data Role</li>
             </ol>
-            <h6 class="slim-pagetitle">PENGATURAN MEMORANDUM</h6>
+            <h6 class="slim-pagetitle">PENGATURAN ROLE</h6>
         </div>
     </div>
     <div class="col-sm-6 col-md-3">
-    <a href="{{route('memorandum.create')}}" class="btn btn-outline-primary btn-block mg-b-10">TAMBAH MEMORANDUM</a>
+    <a href="{{route('roles.create')}}" class="btn btn-outline-primary btn-block mg-b-10">TAMBAH ROLE</a>
   </div>
 </div>
 
@@ -22,33 +22,22 @@
             <thead>
                 <tr>
                     <th>No.</th>
-                    <th>Nomor</th>
-                    <th>Kepada</th>
-                    <th>Dari</th>
-                    <th>Status
-                    </th>
+                    <th>Nama</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($memorandum as $item)
+                @foreach($roles as $item)
                 <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$item->number}}</td>
-                    <td>{{$item->to}}</td>
-                    <td>{{$item->from}}</td>
-                    <td> <form action="{{route('memorandum.approve', $item->id)}}" method="POST">
-                                  @csrf
-                                  @method('PATCH')
-                                  <button type="button" class="btn btn-success" onclick="return confirm('Confirm Data Perjalanan?')"><i class="ion-checkmark-round"></i>Approve</button>                                      
-                              </form></td>
+                    <td>{{$item->name}}</td>
                     <td>
                     <div class="dropdown">
                             <a class="btn btn-outline-info btn-icon rounded-circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div><i class="fa fa-bars"></i></div></a>
                             <div class="dropdown-menu" >                       
-                            <a class="dropdown-item" href="{{route('memorandum.edit', $item->id)}}">Edit</a>
-                              <form action="{{route('memorandum.destroy', $item->id)}}" method="POST">
+                            <a class="dropdown-item" href="{{route('roles.edit', $item->id)}}">Edit</a>
+                              <form action="{{route('roles.destroy', $item->id)}}" method="POST">
                                   @csrf
                                   @method('DELETE')
                                   <button type="submit" class="dropdown-item" onclick="return confirm('Hapus Data?')">Hapus</button>                 

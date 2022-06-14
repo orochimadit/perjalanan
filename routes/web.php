@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MemorandumController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,4 +27,6 @@ Route::get('/dash', function () {
 });
 
 Route::resource('memorandum',MemorandumController::class);
+Route::put('/memorandum/{memorandum}/approve', [MemorandumController::class, 'approve'])->name('memorandum.approve');;
+Route::resource('roles',RoleController::class);
 require __DIR__.'/auth.php';

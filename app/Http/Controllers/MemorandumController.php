@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Memorandum;
+use App\Models\User;
 use App\Http\Requests\StoreMemorandumRequest;
 use App\Http\Requests\UpdateMemorandumRequest;
+use App\Notifications\MemorandumNotification;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class MemorandumController extends Controller
 {
@@ -37,16 +41,36 @@ class MemorandumController extends Controller
      */
     public function store(StoreMemorandumRequest $request)
     {
+        // menyimpan data file yang diupload ke variabel $file
+		if($request->file('file')){
+            $file = $request->file('file');
+ 
+            $nama_file = time()."_".$file->getClientOriginalName();
+     
+                      // isi dengan nama folder tempat kemana file diupload
+            $tujuan_upload = 'data_file';
+            $file->move($tujuan_upload,$nama_file);
+        }else{
+            $file = "";
+        }
+       
         Memorandum::create([
             'number' => $request->number,
+            'id_user'   =>Auth::user()->id,
             'to'    => $request->to,
             'from'  => $request->from,
             'time'  => $request->time,
             'title' => $request->title,
+            'file'  =>  $file,
             'subject'   => $request->subject,
             'description'   => $request->description
         ]);
-        
+        $subscribers = User::all(); //Retrieving all subscribers
+ 
+        foreach($subscribers as $subscriber){
+            Notification::route('mail' , $subscriber->email) //Sending mail to subscriber
+                          ->notify(new MemorandumNotification()); //With new post
+        }
        return redirect()->route('memorandum.index')->with('alert-success', 'Memorandum Berhasil ditambah.');
     }
 
@@ -107,5 +131,18 @@ class MemorandumController extends Controller
             return back()->with('alert-danger',$th->getMessage());
         }
         return redirect()->route('memorandum.index')->with('alert-success', 'Memorandum berhasil dihapus');
+    }
+
+    public function approve(Memorandum $memorandum)
+    {
+        //dd($memorandum);
+        try {
+        $memorandum->update([
+            'approve' => 'yes',
+        ]);
+    } catch (\Throwable $th) {
+        return back()->with('alert-danger',$th->getMessage());
+    }
+        return redirect()->route('memorandum.index')->with('alert-success', 'Memorandum berhasil diubah.');
     }
 }

@@ -23,6 +23,7 @@ class CreateMemorandaTable extends Migration
             $table->string('title');
             $table->string('subject');
             $table->text('description');
+            $table->string('file')->nullable();
             $table->enum('approve', ['yes', 'no'])->default('no');
             $table->timestamps();
 
