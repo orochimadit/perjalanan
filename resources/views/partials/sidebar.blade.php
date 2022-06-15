@@ -12,14 +12,15 @@
             <a href="#" class="sidebar-nav-link">
             <i class="icon ion-ios-book"></i>Data Master </a>
             <ul class="nav sidebar-nav-sub">
-                <li class="nav-sub-item"><a href="#" class=" nav-sub-link">Data Master1</a></li>
+                <li class="nav-sub-item"><a href="{{route('roles.index')}}" class=" nav-sub-link">Roles</a></li>
+                <li class="nav-sub-item"><a href="{{route('users.index')}}" class=" nav-sub-link">User</a></li>
             </ul>
         </li>
         <li class=" sidebar-nav-item with-sub">
             <a href="#" class="sidebar-nav-link">
             <i class="icon ion-clipboard"></i>Data Perjalanan </a>
             <ul class="nav sidebar-nav-sub">
-                <li class="nav-sub-item"><a href="#" class=" nav-sub-link">Data Perjalanan</a></li>                        
+                <li class="nav-sub-item"><a href="{{route('memorandum.index')}}" class=" nav-sub-link">Data Perjalanan</a></li>                        
             </ul>
         </li>
     </ul>
