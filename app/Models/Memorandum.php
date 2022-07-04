@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Memorandum extends Model
 {
     use HasFactory;
-    protected $fillable = ['id_user','number','to','from','time','title','subject','description','file','approve'];
+    protected $fillable = ['user_id','number','to','from','time','title','subject','description','file','approve'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

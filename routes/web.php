@@ -28,7 +28,9 @@ Route::get('/dash', function () {
 });
 
 Route::resource('memorandum',MemorandumController::class);
-Route::put('/memorandum/{memorandum}/approve', [MemorandumController::class, 'approve'])->name('memorandum.approve');;
+Route::put('/memorandum/{memorandum}/approve', [MemorandumController::class, 'approve'])->name('memorandum.approve');
 Route::resource('roles',RoleController::class);
 Route::resource('users',UserController::class);
+
+Route::get('changeStatus', [MemorandumController::class, 'changeStatus'])->name('changeStatus');
 require __DIR__.'/auth.php';

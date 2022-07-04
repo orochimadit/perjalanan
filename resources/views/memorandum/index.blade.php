@@ -25,7 +25,7 @@
                     <th>Nomor</th>
                     <th>Kepada</th>
                     <th>Dari</th>
-                    <th>Status
+                    <th>Approve
                     </th>
                     <th>Action</th>
                 </tr>
@@ -37,11 +37,7 @@
                     <td>{{$item->number}}</td>
                     <td>{{$item->to}}</td>
                     <td>{{$item->from}}</td>
-                    <td> <form action="{{route('memorandum.approve', $item->id)}}" method="POST">
-                                  @csrf
-                                  @method('PATCH')
-                                  <button type="button" class="btn btn-success" onclick="return confirm('Confirm Data Perjalanan?')"><i class="ion-checkmark-round"></i>Approve</button>                                      
-                              </form></td>
+                    <td> <input data-id="{{$item->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="yes" data-off="no" {{ $item->approve == "yes" ? 'checked' : '' }}></td>
                     <td>
                     <div class="dropdown">
                             <a class="btn btn-outline-info btn-icon rounded-circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -64,3 +60,25 @@
 </div>
 
 @endsection
+
+
+@push('script')
+<script>
+	  $(function(){
+        $('.toggle-class').change(function() {
+        var status = $(this).prop('checked') == true ? "yes" : "no"; 
+        var id = $(this).data('id'); 
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/changeStatus',
+            data: {'status': status, 'id': id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+	  });
+	</script>
+@endpush

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Http\Requests\StoreMemorandumRequest;
 use App\Http\Requests\UpdateMemorandumRequest;
 use App\Notifications\MemorandumNotification;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
@@ -56,7 +57,7 @@ class MemorandumController extends Controller
        
         Memorandum::create([
             'number' => $request->number,
-            'id_user'   =>Auth::user()->id,
+            'user_id'   =>Auth::user()->id,
             'to'    => $request->to,
             'from'  => $request->from,
             'time'  => $request->time,
@@ -83,6 +84,9 @@ class MemorandumController extends Controller
     public function show(Memorandum $memorandum)
     {
         //
+        //  dd($memorandum);
+        return view('memorandum.show',compact('memorandum'));
+        
     }
 
     /**
@@ -144,5 +148,13 @@ class MemorandumController extends Controller
         return back()->with('alert-danger',$th->getMessage());
     }
         return redirect()->route('memorandum.index')->with('alert-success', 'Memorandum berhasil diubah.');
+    }
+    public function changeStatus(Request $request)
+    {
+        $mem = Memorandum::find($request->id);
+        $mem->approve = $request->status;
+        $mem->save();
+  
+        return response()->json(['success'=>'Status change successfully.']);
     }
 }

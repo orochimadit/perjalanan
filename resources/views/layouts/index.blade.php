@@ -20,6 +20,8 @@
     <link href="{{asset('assets/lib/select2/css/select2.min.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/css/perfect-scrollbar.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/jquery.steps.css')}}" rel="stylesheet">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+   
     @stack('style')
     <!-- Slim CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/slim.css')}}">
@@ -52,6 +54,7 @@
     <script src="{{ asset('assets/js/jquery.steps.js')}}"></script>
     <script src="{{ asset('assets/lib/jquery-ui/js/jquery-ui.js')}}"></script>
     <script src="{{asset('assets/lib/select2/js/select2.full.min.js')}}"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     @stack('script')
   </body>
 </html>
